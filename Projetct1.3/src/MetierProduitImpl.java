@@ -1,19 +1,21 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MetierProduitImpl implements IMetier<Produit>{
-    public ArrayList<Produit> produits;
+    public List<Produit> produits;
     public String fileName;
 
     public MetierProduitImpl(String fileName) {
-        this.produits = produits;
         this.fileName = fileName;
+        loadObjectsFile();
     }
 
     @Override
-    public void add(Produit o) {
+    public Produit add(Produit o) {
         produits.add(o);
+        return o;
     }
 
     @Override
@@ -34,6 +36,20 @@ public class MetierProduitImpl implements IMetier<Produit>{
 
     @Override
     public void saveAll() {
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName));
+            oos.writeObject(produits);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void loadObjectsFile() {
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fileName));
+            produits = (List<Produit>) ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            produits = new ArrayList<>();
+        }
     }
 }

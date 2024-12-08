@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 public class Client implements Serializable {
-    private String nom;
+    public String nom;
     private String prenom;
     private String adresse;
     private String tel;
@@ -14,6 +14,15 @@ public class Client implements Serializable {
         this.tel = tel;
         this.email = email;
     }
-    // Constructeurs, getters et setters
-    // toString() pour affichage
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

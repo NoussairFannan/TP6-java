@@ -14,7 +14,16 @@ public class Produit implements Serializable {
         this.description = description;
         this.stock = stock;
     }
-    // Constructeurs, getters et setters
-    // toString() pour affichage
+
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "nom='" + nom + '\'' +
+                ", marque='" + marque + '\'' +
+                ", prix=" + prix +
+                ", description='" + description + '\'' +
+                ", nombreEnStock=" + stock +
+                '}';
+    }
 }
 
